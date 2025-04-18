@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Riddle Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #f0f8ff;
+    }
+    .riddle-box {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      max-width: 500px;
+      margin: auto;
+    }
+    button {
+      margin: 10px 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #answer {
+      margin-top: 15px;
+      font-style: italic;
+      color: #555;
+    }
+    #another-btn {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="riddle-box">
+    <h2>Riddle Generator</h2>
+    <p id="riddle">Click the button to get a riddle!</p>
+    <p id="answer"></p>
+    <div id="buttons">
+      <button onclick="showRiddle()" id="new-btn">New Riddle</button>
+      <button onclick="showAnswer()" id="answer-btn" style="display: none;">Show Answer</button>
+      <button onclick="showRiddle()" id="another-btn">Another Riddle?</button>
+    </div>
+  </div>
+
+  <script>
+    const riddles = [
+      {
+        question: "What has to be broken before you can use it?",
+        answer: "An egg."
+      },
+      {
+        question: "I’m tall when I’m young, and I’m short when I’m old. What am I?",
+        answer: "A candle."
+      },
+      {
+        question: "What month of the year has 28 days?",
+        answer: "All of them."
+      },
+      {
+        question: "What is full of holes but still holds water?",
+        answer: "A sponge."
+      },
+      {
+        question: "What question can you never answer yes to?",
+        answer: "Are you asleep yet?"
+      }
+    ];
+
+    let currentRiddle = null;
+
+    function showRiddle() {
+      const randomIndex = Math.floor(Math.random() * riddles.length);
+      currentRiddle = riddles[randomIndex];
+      document.getElementById("riddle").innerText = currentRiddle.question;
+      document.getElementById("answer").innerText = "";
+      document.getElementById("answer-btn").style.display = "inline-block";
+      document.getElementById("another-btn").style.display = "none";
+      document.getElementById("new-btn").style.display = "none";
+    }
+
+    function showAnswer() {
+      if (currentRiddle) {
+        document.getElementById("answer").innerText = currentRiddle.answer;
+        document.getElementById("answer-btn").style.display = "none";
+        document.getElementById("another-btn").style.display = "inline-block";
+      }
+    }
+  </script>
+<br>
+<a href="scratch.html">
+  <button style="background-color: #2196F3;">Back to Hobby Page</button>
+</a>
+</body>
+</html>
